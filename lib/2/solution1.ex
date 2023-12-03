@@ -1,4 +1,4 @@
-defmodule Solution1 do
+defmodule AdventOfCode.Day2.Solution1 do
   @round_regex ~r/(\d+)\ (red|green|blue)/
 
   @max_red_cubes 12
@@ -10,7 +10,7 @@ defmodule Solution1 do
   end
 
   def execute do
-    File.stream!("input.txt")
+    File.stream!("priv/2.txt")
     |> Stream.map(&String.trim_trailing/1)
     |> Stream.map(&build_game/1)
     |> Enum.reduce(0, fn game, acc ->
@@ -20,7 +20,6 @@ defmodule Solution1 do
         acc
       end
     end)
-    |> IO.puts()
   end
 
   defp build_game(line) do

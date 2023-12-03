@@ -1,12 +1,11 @@
-defmodule Solution do
+defmodule AdventOfCode.Day1.Solution2 do
   @calibration_number_regex ~r/(?=(\d{1}|one|two|three|four|five|six|seven|eight|nine)(\d{1}|one|two|three|four|five|six|seven|eight|nine)?)/
 
   def execute do
-    File.stream!("input.txt")
+    File.stream!("priv/1.txt")
     |> Stream.map(&String.trim_trailing/1)
     |> Stream.map(&find_calibration_value/1)
     |> Enum.reduce(0, fn value, acc -> value + acc end)
-    |> IO.puts()
   end
 
   defp find_calibration_value(line) do
