@@ -16,7 +16,7 @@ defmodule AdventOfCode.Day3.Solution1 do
       |> Stream.map(&String.trim_trailing/1)
       |> Stream.with_index()
       |> Stream.map(&build_structs/1)
-      |> join_structs_lists() 
+      |> join_structs_lists()
 
     symbols_set =
       symbols
@@ -41,14 +41,14 @@ defmodule AdventOfCode.Day3.Solution1 do
       |> Enum.with_index(fn element, index -> {index, element} end)
       |> Enum.reduce(%{numbers: [], symbols: [], temp_value: "", temp_coords: []},
         fn
-          {x, grapheme}, acc when grapheme in @symbol_values -> 
+          {x, grapheme}, acc when grapheme in @symbol_values ->
             symbol = %Symbol{value: grapheme, coords: {x, y}}
 
             acc
             |> Map.update!(:symbols, fn symbols -> [symbol | symbols] end)
             |> maybe_add_number()
 
-          {x, grapheme}, acc when grapheme in @number_values -> 
+          {x, grapheme}, acc when grapheme in @number_values ->
             acc
             |> Map.update!(:temp_value, fn number -> number <> grapheme end)
             |> Map.update!(:temp_coords, fn coords -> [{x, y} | coords] end)
